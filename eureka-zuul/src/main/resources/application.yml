@@ -1,0 +1,40 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: eureka-zuul
+    
+management:
+  security:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+zuul:
+  routes:
+    users:
+      path: /users/**
+      serviceId: eureka-consumer
+    baidu:
+      url: https://www.baidu.com
+    simple:
+      path: /simple/**
+      url: http://www.163.com
+    myForword:
+      path: /mf/**
+      url: forward:/sayHi
+#    legacy:
+#      path: /**
+#      url: https://www.toutiao.com
+        
+#ribbon:
+#  httpclient:
+#    enabled: false
+#  okhttp:
+#    enabled: true
+#  restclient：
+#    enabled: true
